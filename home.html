@@ -4,29 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>API Request</title>
+    <style>
+        /* Sayfanın tamamını ortalar */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        /* Butonların bulundugu kapsayıcı */
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Buton stili */
+        .button {
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            width: 100%;
+            max-width: 300px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        /* Mobil uyumluluk */
+        @media (max-width: 600px) {
+            .button {
+                font-size: 16px;
+                padding: 12px 24px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<button onclick="sendData('RECENT')">Recent</button>
-<button onclick="sendData('HOME')">Home</button>
-<button onclick="sendData('BACK')">Back</button>
+    <div class="button-container">
+        <button class="button" onclick="sendData('RECENT')">Recent</button>
+        <button class="button" onclick="sendData('HOME')">Home</button>
+        <button class="button" onclick="sendData('BACK')">Back</button>
+    </div>
 
-<script>
-function sendData(command) {
-    const url = `https://trigger.macrodroid.com/27ac2082-c2e3-45f8-b654-3d0e69ed7da2/enablewebhook?text=${command}`;
+    <script>
+        function sendData(command) {
+            const url = `https://trigger.macrodroid.com/27ac2082-c2e3-45f8-b654-3d0e69ed7da2/enablewebhook?text=${command}`;
 
-    fetch(url)
-    .then(response => response.text())
-    .then(data => {
-        console.log('Success:', data);
-        alert("Command sent: " + command);
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-        alert("Error sending command: " + command);
-    });
-}
-</script>
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    console.log('Success:', data);
+                    alert("Command sent: " + command);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert("Error sending command: " + command);
+                });
+        }
+    </script>
 
 </body>
 </html>
