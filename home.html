@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Request</title>
+</head>
+<body>
+
+<button onclick="sendData('RECENT')">Recent</button>
+<button onclick="sendData('HOME')">Home</button>
+<button onclick="sendData('BACK')">Back</button>
+
+<script>
+function sendData(command) {
+    const url = `https://trigger.macrodroid.com/27ac2082-c2e3-45f8-b654-3d0e69ed7da2/enablewebhook?text=${command}`;
+
+    fetch(url)
+    .then(response => response.text())
+    .then(data => {
+        console.log('Success:', data);
+        alert("Command sent: " + command);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        alert("Error sending command: " + command);
+    });
+}
+</script>
+
+</body>
+</html>
